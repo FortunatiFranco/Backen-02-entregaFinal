@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { userModel } from "../models/users-model.js";
 import { generateToken, } from "../util.js";
 import passport from "passport";
 
