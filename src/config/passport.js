@@ -10,7 +10,6 @@ function initializePassport() {
         passReqToCallback: true,
         usernameField: "email",
         passwordField: "password",
-        session: true
     },
         async (req, email, password, done) => {
             try {
@@ -41,7 +40,7 @@ function initializePassport() {
                 if (verifyPassword(password, user.password)) {
                     return done(null, user)
                 } else {
-                    return done(new Error("Credenciales no validas"), false);
+                    return done(null, false);
                 }
             } catch (error) {
                 return done(error.message);
@@ -59,7 +58,7 @@ function initializePassport() {
                 return done(error);
             }
         }
-    ))
+    ));
     passport.serializeUser((user, done) => {
         return done(null, user._id);
     });

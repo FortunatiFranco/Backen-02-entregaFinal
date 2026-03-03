@@ -9,7 +9,7 @@ router.get("/get-all", async (req, res) => {
     res.json(getUsers);
 });
 
-router.post("/", passport.authenticate("register", { failureRedirect: "/error-register", successRedirect: "/login" }))
+router.post("/", passport.authenticate("register", { failureRedirect: "/error-register", successRedirect: "/login", session: false }))
 
 router.put("/", async (req, res) => {
     const { _id } = req.params;
