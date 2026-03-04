@@ -11,9 +11,10 @@ export function generateToken(user) {
     return jwt.sign(user, "tokensecreto");
 }
 
-export function validateToken(token, secret) {
+/*export function validateToken(token, secret) {
     return jwt.verify(token, secret);
 }
+*/
 
 export function hashPassword(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
@@ -37,7 +38,7 @@ export function customPassportCall(strategy) {
         passport.authenticate(strategy, (error, user, info) => {
             if (error) return next(error)
             if (!user) {
-                return res.status(401).json({ error: info.messages ? info.messages : info.toSring() })
+                return res.status(401).json({ error: info.message ? info.message : info.toString() })
             }
             req.user = user;
             next();
