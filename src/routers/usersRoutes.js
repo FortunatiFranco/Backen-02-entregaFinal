@@ -1,6 +1,6 @@
 import { Router } from "express";
 import passport from "passport";
-import { deleteUser, getAll, updateUser } from "../controllers/userControllers.js";
+import { deleteUser, getAll, updateUser } from "../controllers/usersControllers.js";
 
 const router = Router();
 

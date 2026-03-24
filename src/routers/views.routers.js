@@ -1,28 +1,19 @@
 import { Router } from "express";
 import { customPassportCall } from "../util.js";
+import { errorRegister, login, profile, register } from "../controllers/viewsControllers.js";
 
 
 const router = Router();
 
-router.get("/login", async (req, res) => {
-    res.render("login");
-})
+router.get("/login", login)
 
-router.get("/register", async (req, res) => {
-    res.render("register");
-})
+router.get("/register", register)
 
-router.get("error-register", async (req, res) => {
-    res.send("El registro fallo.");
-})
+router.get("error-register", errorRegister)
 
 router.use(customPassportCall("jwt"));
 
-router.get("/profile", async (req, res) => {
-    res.render("profile", {
-        user: req.user || req.session.user
-    })
-})
+router.get("/profile", profile)
 
 
 export default router;
