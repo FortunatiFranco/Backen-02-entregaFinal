@@ -8,7 +8,7 @@ router.get("/get-all", getAll);
 
 router.post("/", passport.authenticate("register", { failureRedirect: "/error-register", successRedirect: "/login", session: false }))
 
-router.put("/", updateUser);
+router.put("/:email", updateUser);
 
 router.delete("/", deleteUser);
 
