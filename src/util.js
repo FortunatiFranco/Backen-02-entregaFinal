@@ -3,12 +3,13 @@ import { fileURLToPath } from "url";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import passport from "passport";
+import { env } from "./config/env";
 
 const filePath = fileURLToPath(import.meta.url);
 const __dirname = dirname(filePath);
 
 export function generateToken(user) {
-    return jwt.sign(user, "tokensecreto");
+    return jwt.sign(user, env.TOKEN_SECRET);
 }
 
 export function hashPassword(password) {

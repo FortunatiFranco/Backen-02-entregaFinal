@@ -9,8 +9,8 @@ import handlebars from "express-handlebars";
 import passport from "passport";
 import initializePassport from "./config/passport.js";
 import session from "express-session";
-import MongoStore from "connect-mongo";
 import { env } from "./config/env.js";
+import { sessionConfig } from "./config/session.js";
 
 const app = express();
 
@@ -24,22 +24,7 @@ app.use(passport.initialize());
 
 initializePassport();
 
-app.use(session({
-    cookie: {
-        maxAge: 3600000,
-        httpOnly: true
-    },
-    store: MongoStore.create({
-        mongoUrl: "mongodb://localhost:27017/backend-02",
-        ttl: 60,
-        autoRemove: "interval",
-        autoRemoveInterval: 70
-    }),
-    secret: "soyelsecretito",
-    resave: false,
-    saveUninitialized: false
-}));
-
+app.use(session(sessionConfig));
 
 app.use(cookieParser());
 

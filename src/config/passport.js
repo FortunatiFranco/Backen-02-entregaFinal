@@ -3,6 +3,7 @@ import { Strategy as localStrategy } from "passport-local";
 import { userModel } from "../models/users-model.js";
 import { cookieExtractor, hashPassword, verifyPassword } from "../util.js";
 import { ExtractJwt, Strategy as jwtStrategy } from "passport-jwt";
+import { env } from "./env.js";
 
 
 function initializePassport() {
@@ -49,7 +50,7 @@ function initializePassport() {
     ));
     passport.use("jwt", new jwtStrategy({
         jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
-        secretOrKey: "tokensecreto"
+        secretOrKey: env.TOKEN_SECRET
     },
         async (payload, done) => {
             try {
